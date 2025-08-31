@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lunar Creast</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
+    body{background:radial-gradient(circle at top,#0a0a1a,#000);color:#fff;overflow-x:hidden}
+    html{scroll-behavior:smooth}
+
+    /* Navbar */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;
+        display:flex;justify-content:space-between;align-items:center;
+        padding:12px 22px;background:rgba(0,0,0,.7);backdrop-filter:blur(8px)}
+    nav .brand{display:flex;align-items:center;gap:10px}
+    nav h1{font-size:1.5rem;background:linear-gradient(90deg,#00e6ff,#a020f0);
+           -webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+    nav ul{display:flex;gap:20px;list-style:none}
+    nav ul li a{text-decoration:none;color:#fff;font-size:1rem;transition:.25s}
+    nav ul li a:hover{color:#00e6ff}
+    .menu-toggle{display:none;font-size:1.9rem;color:#00e6ff;cursor:pointer}
+
+    /* Hero */
+    .hero{min-height:100vh;display:flex;flex-direction:column;
+          justify-content:center;align-items:center;text-align:center;padding:0 20px}
+    .hero h2{font-size:2.6rem;margin-bottom:15px;background:linear-gradient(90deg,#00e6ff,#a020f0);
+             -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero p{font-size:1.2rem;max-width:700px;margin-bottom:28px;color:#ddd}
+    .btn{background:none;border:2px solid #00e6ff;padding:12px 26px;font-size:1.05rem;
+         color:#00e6ff;border-radius:28px;cursor:pointer;transition:.3s}
+    .btn:hover{background:#00e6ff;color:#000;box-shadow:0 0 22px #00e6ff,0 0 45px #00e6ff}
+
+    /* Sections */
+    section{padding:90px 20px;text-align:center;position:relative;z-index:1}
+    section h2{font-size:2.2rem;margin-bottom:20px;color:#00e6ff}
+    section p{font-size:1.1rem;max-width:850px;margin:0 auto;color:#ccc;line-height:1.65}
+
+    /* Team */
+    .team{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;margin-top:30px}
+    .member{background:rgba(0,0,0,.6);padding:25px 20px;border-radius:16px;max-width:260px;
+            text-align:center;box-shadow:0 0 12px rgba(0,0,0,0.4);transition:.3s}
+    .member:hover{transform:translateY(-6px);box-shadow:0 0 18px rgba(0,230,255,0.6)}
+    .avatar{width:80px;height:80px;margin:0 auto 14px;border-radius:50%;
+            background:linear-gradient(135deg,#00e6ff,#a020f0);
+            display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff}
+    .member h3{font-size:1.15rem;margin:12px 0 8px;color:#a020f0}
+    .member p{font-size:.95rem;color:#bbb;line-height:1.5}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+              gap:22px;margin-top:35px}
+    .feature-card{background:rgba(0,0,0,.6);border-radius:16px;padding:26px 20px;transition:.3s}
+    .feature-card:hover{transform:translateY(-6px);box-shadow:0 0 20px rgba(160,32,240,.55)}
+    .feature-card h3{color:#a020f0;font-size:1.2rem;margin-bottom:10px}
+    .feature-card p{color:#ddd;font-size:.98rem;line-height:1.55}
+
+    /* Contact */
+    .contact-info{margin-top:20px;display:flex;flex-direction:column;align-items:center}
+    .contact-info p,.contact-info a{
+        font-size:1.4rem;
+        margin:14px 0;
+        font-weight:bold;
+        text-decoration:none;
+        transition:.3s;
+    }
+    .contact-info p{color:#00e6ff}
+    .contact-info a{color:#a020f0}
+    .contact-info p:hover,.contact-info a:hover{
+        color:#00e6ff;
+        transform:scale(1.1);
+    }
+
+    /* Footer */
+    footer{text-align:center;padding:20px;background:rgba(0,0,0,.6)}
+    footer p{font-size:.9rem;color:#aaa}
+
+    /* Particles */
+    .particles{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+    .particle{position:absolute;width:4px;height:4px;background:#00e6ff;border-radius:50%;opacity:.8;animation:float 10s linear infinite}
+    @keyframes float{from{transform:translateY(0)}to{transform:translateY(-100vh)}}
+
+    /* Responsive */
+    @media(max-width:768px){
+      nav ul{display:none;flex-direction:column;position:absolute;top:60px;right:20px;
+             background:rgba(0,0,0,.85);padding:15px 25px;border-radius:10px}
+      nav ul.active{display:flex}
+      .menu-toggle{display:block}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="brand">
+      <h1>Lunar Creast</h1>
+    </div>
+    <div class="menu-toggle">☰</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#vision">Our Vision</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="particles"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Shaping Influence into Impact</h2>
+    <p>We are an innovative influencer agency dedicated to building powerful bridges between creators and brands.</p>
+    <button class="btn" id="getStartedBtn">Get Started</button>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Lunar Creast is designed to help creators grow and brands shine. We specialize in connecting influencers with companies that share the same goals and vision, making every collaboration impactful and genuine.</p>
+    <p>Our agency works with influencers across multiple platforms including Instagram, YouTube, and TikTok. We assist with brand deals, audience engagement, and long-term growth strategies that benefit both creators and businesses.</p>
+    <p>We also focus on personalized guidance, ensuring that every creator feels supported in their journey while every brand finds the right voice for their message.</p>
+  </section>
+
+  <!-- Our Vision -->
+  <section id="vision" style="background:rgba(255,255,255,.05);">
+    <h2>Our Vision</h2>
+    <p>We believe the future of marketing lies in authentic storytelling. Our mission is to not just connect influencers with sponsors, but to create long-term partnerships that foster trust, creativity, and measurable success. At Lunar Creast, we are driven by innovation and a passion for helping brands and creators leave a lasting digital footprint.</p>
+  </section>
+
+  <!-- Team -->
+  <section id="team">
+    <h2>Meet Our Team</h2>
+    <div class="team">
+      <div class="member">
+        <div class="avatar">H</div>
+        <h3>Harshit Kumar</h3>
+        <p>Ensures operations run smoothly and efficiently.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">P</div>
+        <h3>Kumar Parth</h3>
+        <p>Drives partnerships and builds relationships with brands.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">V</div>
+        <h3>Vishnu</h3>
+        <p>Guides creators through seamless collaborations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" style="background:rgba(255,255,255,.03);">
+    <h2>Why Choose Us</h2>
+    <div class="features">
+      <div class="feature-card">
+        <h3>Strategic Collaborations</h3>
+        <p>We carefully match brands and creators for maximum success.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Data-Driven Insights</h3>
+        <p>Analytics and research power every decision we make.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Global Reach</h3>
+        <p>Helping creators and brands expand their presence worldwide.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Creative Strategies</h3>
+        <p>Fresh campaigns that connect emotionally with audiences.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p>📧 owner.lunarcreast@gmail.com</p>
+      <a href="https://instagram.com/lunarcreast" target="_blank">📷 Follow us on Instagram</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Lunar Creast. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Particles
+    const particlesContainer=document.querySelector('.particles');
+    for(let i=0;i<60;i++){
+      const p=document.createElement('div');
+      p.className='particle';
+      p.style.left=Math.random()*100+'vw';
+      p.style.top=Math.random()*100+'vh';
+      p.style.animationDuration=(5+Math.random()*10)+'s';
+      particlesContainer.appendChild(p);
+    }
+
+    // Scroll to About
+    document.getElementById('getStartedBtn').addEventListener('click',()=> {
+      document.getElementById('about').scrollIntoView({behavior:'smooth'});
+    });
+
+    // Mobile Navbar Toggle
+    const menuToggle=document.querySelector('.menu-toggle');
+    const navLinks=document.querySelector('nav ul');
+    menuToggle.addEventListener('click',()=>{navLinks.classList.toggle('active')});
+  </script>
+</body>
+</html>
